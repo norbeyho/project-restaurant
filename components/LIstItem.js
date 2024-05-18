@@ -5,12 +5,13 @@ import styles from "../styles/styles";
 
 const ListItem = ({ item }) => {
         
-    const { name, image, key } = item;
-
+    const image = require('../images/icon.png');
+    const { tableName } = item;
+    
     return (        
             <View style={styles.item}>             
-                <Text style={styles.title}>{name}</Text>               
-                <Image source={image} style={styles.img}/>                                           
+                <Text style={styles.title}>{tableName}</Text>               
+                <Image source={image} style={styles.img}/>
             </View>             
     );
 }

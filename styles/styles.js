@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
       title: {
         fontSize: 16,
         color: '#c8c8c8',
-        fontWeight:'bold'
+        //fontWeight:'bold'
       },
       img:{
         flex:1,
@@ -34,12 +34,36 @@ const styles = StyleSheet.create({
       },
 
       //Vista Crear Pedido
+      category : {
+        
+        //flex:1,
+        //backgroundColor: '#c1c1c1',        
+        width: 70,
+        height:70,
+        //justifyContent:'center',   
+        alignItems:'center',    
+        marginHorizontal: 2,
+        marginTop:0,
+        //borderRadius: 8,        
+      },
+      img_category:{
+        //flex:1,
+        flexGrow:1,
+        height:60,
+        width:60,
+        marginTop:8,
+        borderRadius:5,
+        borderWidth:0.5,
+        borderColor:'#c1c1c1',
+        
+      },
       container_crear_pedido: {
         flex:1,
-        justifyContent:'flex-end',
+        backgroundColor:'yellow',
+        //justifyContent:'flex-end',
         flexDirection:'column',
-        backgroundColor:'#530B24',
-        //alignItems:'flex-end'
+        backgroundColor:'#16161c',
+        alignItems:'center'
       },
 
       container_crear_pedido2: {
