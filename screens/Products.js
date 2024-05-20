@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { View, Text, FlatList, TouchableOpacity, Image } from 'react-native';
 import axios from 'axios';
 import styles from '../styles/styles';
+import { DataContext } from '../context/DataContext';
+
 
 const Products = ({ route }) => {
+  
   const [products, setProducts] = useState([]);
   const { categoryId } = route.params;
+  const { addProduct } = useContext(DataContext)
 
   useEffect(() => {
     const getProducts = async () => {
@@ -21,6 +25,7 @@ const Products = ({ route }) => {
     getProducts();
   }, [categoryId]);
 
+  
   return (
     <View style={styles.container_ask}>      
       <FlatList
@@ -33,7 +38,7 @@ const Products = ({ route }) => {
             <Text style={styles.title_ask}>{item.price}</Text>
             </View>              
             <View>
-            <TouchableOpacity onPress={()=>console.log('agregado')}>
+            <TouchableOpacity onPress={()=> addProduct(item)}>
             <Image source={require('../images/cart.png')} style={styles.img_ask}/>
             </TouchableOpacity>
             </View>                    

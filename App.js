@@ -4,19 +4,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator} from '@react-navigation/native-stack'
 import { DrawerContent } from './navigation/DrawerNavigation';
 import CreateOrder from './screens/CreateOrder';
-//import Roast from './screens/Products';
 import Specials from './screens/Specials';
 import Desserts from './screens/Desserts';
 import Drinks from './screens/Drinks';
 import Fast_food from './screens/Fast_food';
 import { TabContent } from './navigation/TabNavigation';
 import Products from './screens/Products';
+import { DataProvider } from './context/DataContext';
 
 const Stack = createNativeStackNavigator();
 
 
 export default function App() {
   return (
+    <DataProvider>
     <NavigationContainer>           
       <Stack.Navigator>
         <Stack.Screen name='HomeMesas' component={DrawerContent} options={{headerShown:false}}/>
@@ -29,5 +30,6 @@ export default function App() {
         <Stack.Screen name='Fast_food' component={Fast_food} options={{title:'Comidas rápidas'}} />
       </Stack.Navigator>                 
     </NavigationContainer>
+    </DataProvider>
   );
 };
