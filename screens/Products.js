@@ -32,7 +32,7 @@ const Products = ({ route }) => {
         data={products}
         keyExtractor={(item) => item.productName}
         renderItem={({ item }) => (
-          <View style={styles.view_ask}>
+          <View style={styles.container_product}>
             <View>
             <Text style={styles.title_ask}>{item.productName}</Text>
             <Text style={styles.title_ask}>{item.price}</Text>

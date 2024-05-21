@@ -19,11 +19,9 @@ const DataProvider = ({ children }) => {
         });
       };
 
-      const removeProduct = (productName) => {
-        setOrder((prevOrder) => prevOrder.filter(item => item.productName !== productName));
-      };
+      
     
-    return <DataContext.Provider value={{ order, addProduct, removeProduct }} >{children}</DataContext.Provider>
+    return <DataContext.Provider value={{ order, addProduct, setOrder }} >{children}</DataContext.Provider>
 }
 
 export { DataContext, DataProvider};

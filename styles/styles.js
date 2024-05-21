@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         //flex:1,
         //backgroundColor: '#c1c1c1',        
         width: 70,
-        height:70,
+        height:'20%',
         //justifyContent:'center',   
         alignItems:'center',    
         marginHorizontal: 2,
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
         backgroundColor:'yellow',
         //justifyContent:'flex-end',
         flexDirection:'column',
-        backgroundColor:'#16161c',
+        backgroundColor:'#16161C',
         alignItems:'center'
       },
 
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
       vista_menu: {
         flex:1,
         flexDirection:'row',
-        //justifyContent:'space-around',
+        justifyContent:'space-around',
         alignItems:'flex-end',
         gap:10,
         margin:10,
@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
         width:30,
         height:30,                
       },
-      view_ask: {
+      container_product: {
         backgroundColor:'#530B24',
         flexDirection:'row',
         justifyContent:'space-between',
@@ -182,6 +182,16 @@ const styles = StyleSheet.create({
         padding:10,   
         borderBottomColor:'#C2C2C2',
         borderWidth:0.2,            
+      },
+      view_ask: {
+        flex:3,
+        backgroundColor:'#16161C',
+        flexDirection:'row',
+        justifyContent:'space-around',
+        alignItems:'center',
+        padding:10,   
+        borderBottomColor:'#C2C2C2',
+        borderWidth:0.2,                    
       }
 });
 
