@@ -37,29 +37,30 @@ const styles = StyleSheet.create({
       category : {
         
         //flex:1,
-        //backgroundColor: '#c1c1c1',        
-        width: 70,
-        height:'20%',
-        //justifyContent:'center',   
+        //backgroundColor: 'white',        
+        //width: '100%',
+        height:'100%',
+        justifyContent:'flex-start',   
         alignItems:'center',    
-        marginHorizontal: 2,
-        marginTop:0,
-        //borderRadius: 8,        
+        marginHorizontal: 5,
+        margin:10,
+        //borderRadius: 8,  
+        marginBottom:5,
+              
       },
       img_category:{
-        //flex:1,
+        flexDirection:'column',
         flexGrow:1,
         height:60,
         width:60,
-        marginTop:8,
+        //marginTop:8,
         borderRadius:5,
         borderWidth:0.5,
         borderColor:'#c1c1c1',
-        
+        marginBottom:15
       },
       container_crear_pedido: {
         flex:1,
-        backgroundColor:'yellow',
         //justifyContent:'flex-end',
         flexDirection:'column',
         backgroundColor:'#16161C',
@@ -68,12 +69,12 @@ const styles = StyleSheet.create({
 
       container_crear_pedido2: {
         flex:1,
-        justifyContent:'flex-end',
+        justifyContent:'space-between',
         flexDirection:'column',
         backgroundColor:'#530B24',
-        alignItems:'flex-end',
-        //alignItems:'center',
-        //justifyContent:'space-between'
+        alignItems:'center',
+        height:'20%'
+        
       },
 
       title_menu:{
@@ -137,18 +138,21 @@ const styles = StyleSheet.create({
       },
 
       vista_menu: {
-        flex:1,
+        //flex:1,
         flexDirection:'row',
         justifyContent:'space-around',
-        alignItems:'flex-end',
+        alignItems:'center',
         gap:10,
         margin:10,
+        paddingTop:0,
+        paddingBottom:10,
         //marginTop:0,
-        marginBottom:20
+        marginBottom:10,
+        //backgroundColor:'white'
       },
 
       button_menu: {
-        flex:1,
+        alignItems:'center',
         justifyContent:'center',        
         width:'auto',
         borderRadius:20,
@@ -157,10 +161,11 @@ const styles = StyleSheet.create({
 
       //Seccion Pedido
       container_ask: {
-        flex: 1,
+        //flex: 1,
         width: '100%',
         height: '100%',
-        backgroundColor:'#16161C',        
+        //backgroundColor:'#16161C',  
+        backgroundColor:'white'      
       },
 
       title_ask: {
@@ -184,14 +189,71 @@ const styles = StyleSheet.create({
         borderWidth:0.2,            
       },
       view_ask: {
-        flex:3,
+        flex:1,
         backgroundColor:'#16161C',
-        flexDirection:'row',
-        justifyContent:'space-around',
+        flexDirection:'column',
+        justifyContent:'space-between',
         alignItems:'center',
-        padding:10,   
+        //padding:10,   
         borderBottomColor:'#C2C2C2',
-        borderWidth:0.2,                    
+        borderWidth:0.2,   
+        paddingVertical:5,
+        paddingHorizontal:10,
+        
+      },
+
+      buttonContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',       
+      },
+
+      textInput: {
+        backgroundColor:'white'
+      },
+
+      horizontalContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        borderBottomColor:'#C2C2C2',
+        borderWidth:0.2,
+        paddingEnd:10
+      },
+      containerComment:{
+        flex:1,
+        flexDirection:'column',
+        justifyContent:'center',
+        alignItems:'center',
+        backgroundColor:'#16161C'
+      },
+      textComment: {
+        color: '#c8c8c8',
+      },
+
+      orderContainer: {
+        flex:1,
+        //alignItems:'center',
+        backgroundColor:'#16161C',
+        padding:10,
+        //borderColor:'white',
+        //borderWidth:1,
+        //borderRadius:8,
+        //marginBottom:5,
+        color:'white'
+      },
+
+      productContainer: {
+        flex:1,
+        alignItems:'center',
+        padding:10,
+        borderColor:'white',
+        borderWidth:0.5,
+        borderRadius:8,
+        
+        color:'white',
+        backgroundColor:'#530B24',
+        
       }
 });
 

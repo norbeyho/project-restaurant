@@ -14,7 +14,7 @@ const Products = ({ route }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const url = `https://backend-restaurant-seven.vercel.app/api/products/${categoryId}`;
+        const url = `http://148.113.142.238:3000/api/products/${categoryId}`;
         const response = await axios.get(url);
         setProducts(response.data);
       } catch (error) {

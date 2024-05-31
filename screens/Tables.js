@@ -3,9 +3,9 @@ import { View, FlatList,TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "../styles/styles";
 import { useNavigation } from "@react-navigation/native";
-import CreateOrder from "./CreateOrder";
 import axios from "axios";
-import ListItem from "../components/ListItem";
+import ListItem from "../components/ListTable";
+
 
 
 const Tables = () => {
@@ -15,7 +15,7 @@ const Tables = () => {
   useEffect(()=>{
   const getTable = async () => {
     try {
-      const url = `https://backend-restaurant-seven.vercel.app/api/tables`;
+      const url = `http://148.113.142.238:3000/api/tables`;
       const response = await axios.get(url);      
       setTable(response.data);
       //setIcon(response.data.icon);
@@ -29,8 +29,8 @@ const Tables = () => {
     
     const navigation = useNavigation();
 
-    const selectTable = (tableName) =>{
-      navigation.navigate('CreateOrder', { tableName })
+    const selectTable = (tableName, tableId) =>{
+      navigation.navigate('CreateOrder', { tableName, tableId })
     }
     
     return (
