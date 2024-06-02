@@ -249,12 +249,24 @@ const styles = StyleSheet.create({
         padding:10,
         borderColor:'white',
         borderWidth:0.5,
-        borderRadius:8,
-        
+        borderRadius:8,        
         color:'white',
-        backgroundColor:'#530B24',
-        
+        backgroundColor:'#530B24',        
+      },
+
+      img_background: {        
+          flex: 1,
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',        
+          //backgroundColor: 'rgba(0, 0, 0, 0.5)', // Un fondo semi-transparente para el texto
+          //padding: 20,
+          borderRadius: 10,      
+          color: 'white',
+          fontSize: 24,        
       }
+      
 });
 
 export default styles;

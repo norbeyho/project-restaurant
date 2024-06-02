@@ -5,6 +5,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { useForm, Controller } from "react-hook-form";
 import axios from 'axios';
+import { ImageBackground } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
+
 
  const Login =({ navigation }) =>{
   const [error, setError] = useState('');
@@ -53,7 +56,10 @@ import axios from 'axios';
   };
 
   return (
-    <View style={styles.container}>
+    <ImageBackground 
+      source={require('../images/bg.webp')}
+      style={[styles.container,styles.img_background]}>
+      <LinearGradient style={[styles.container,{width:'100%'}]} colors={['rgba(105,27,53,0.2)', 'transparent']}>
       <Controller
         control={control}
         rules={{
@@ -105,10 +111,11 @@ import axios from 'axios';
 
       {error ? <Text style={{ color: 'red' }}>{error}</Text> : null}
 
-      <Button style={{backgroundColor:'#530B24', width: '80%', height:'300'}} icon="login" mode="contained" onPress={handleSubmit(onSubmit)}>
+      <Button style={{backgroundColor:'#530B24', width: '80%', height:'30'}} icon="login" mode="contained" onPress={handleSubmit(onSubmit)}>
         Iniciar Sesión
       </Button>
-    </View>
+      </LinearGradient>
+    </ImageBackground>
   );
 }
 
@@ -116,7 +123,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     color: 'white',
-    backgroundColor: '#16161C',
+    //backgroundColor: '#16161C',
     alignItems: 'center',
     justifyContent: 'center',
     gap: 20,
@@ -126,7 +133,7 @@ const styles = StyleSheet.create({
     color: 'black',
     borderColor: '#F8F6F1',
     borderRadius: 7,
-    borderWidth: 2,
+    //borderWidth: 2,
     padding: 10,
     margin: 10,
     width: '80%',

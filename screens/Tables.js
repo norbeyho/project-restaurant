@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { View, FlatList,TouchableOpacity } from "react-native";
+import { View, FlatList,TouchableOpacity, } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styles from "../styles/styles";
 import { useNavigation } from "@react-navigation/native";
 import axios from "axios";
 import ListItem from "../components/ListTable";
+import { ImageBackground } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+
 
 
 
@@ -34,21 +37,25 @@ const Tables = () => {
     }
     
     return (
-      <SafeAreaView style={styles.container}>           
+      <ImageBackground
+      source={require('../images/bg.webp')} 
+      style={[styles.container,styles.img_background]}>
+      <LinearGradient style={{width:'100%',flex:1,alignItems:'center'}} colors={['rgba(99, 21, 21, 0.4)', 'transparent']}>           
         <FlatList 
-            style={styles.flatlist}
+            style={styles.FlatList}
             contentContainerStyle={{flexGrow:1}}
             showsVerticalScrollIndicator={false}
             data={table}
             keyExtractor={ (item) => item.tableId } 
-            numColumns={2}
+            numColumns={2}            
             renderItem={ ({item}) => (
                 <TouchableOpacity onPress={()=> selectTable(item.tableName)}>
                     <ListItem item={item} />
                 </TouchableOpacity>
             )}               
-        />                                  
-      </SafeAreaView>
+        />     
+        </LinearGradient>                             
+      </ImageBackground>
         
     );
 }
