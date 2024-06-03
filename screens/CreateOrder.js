@@ -8,26 +8,24 @@ import { DataContext } from '../context/DataContext'
 import { Button, IconButton } from 'react-native-paper'
 import { io } from 'socket.io-client'
 
-//const socket = io('http://148.113.142.238:3000/')
-
 const CreateOrder = () => {
 
   const [category, setCategory] = useState([])  
   const navigation = useNavigation();
   const route = useRoute();
   const { tableName } = route.params;
-  const { orders, addProduct, setTable, setOrders, totalAmount, searchOrder } = useContext(DataContext)
+  const { orders, addProduct, setTable, setOrders, totalAmount, } = useContext(DataContext)
 
   useEffect(() => {
     setTable(tableName); //Establecer la mesa actual
-    searchOrder(tableName);//Buscar la orden actual
+    //searchOrder(tableName);//Buscar la orden actual
   }, [tableName, setTable]);
 
   //Cargar la lista de categorías
   useEffect(() => {
     const getCategory = async () => {
       try {
-        const url = `https://backend-restaurant-seven.vercel.app/api/categories`;
+        const url = `http://148.113.142.238:3000/api/categories`;
         const response = await axios.get(url);
         setCategory(response.data);
       }
@@ -36,16 +34,7 @@ const CreateOrder = () => {
       }
     }
     getCategory();
-  }, []);
-
-  // useEffect(()=>{
-  //   socket.on('orderUpdate',(statusUpdate) =>{
-  //     console.log('Orden actualizada:', statusUpdate);
-  //   });
-  //   return () => {
-  //     socket.off('orderUpdate');
-  //   }
-  // },[]);
+  }, []);  
 
   //Pasar el Id de la categoría correspondiente
   const selectCategory = (categoryId) => {
@@ -90,11 +79,11 @@ const CreateOrder = () => {
       progress: "Pendiente",      
     };
     try {
-      const response = await axios.post('https://backend-restaurant-seven.vercel.app/api/orders', orderData);
+      const response = await axios.post('http://148.113.142.238:3000/api/orders', orderData);
       console.log('Orden enviada:', response.data);
-      //socket.emit('newOrder', orderData);
+      socket.emit('newOrder', orderData);
       //Limpiar orden
-      //setOrders({ ...orders, [tableName]: [] });
+      setOrders({ ...orders, [tableName]: [] });
       
       navigation.navigate('Mesas'); //Regresar a la pantalla Mesas
     } catch (error) {
@@ -102,35 +91,7 @@ const CreateOrder = () => {
       console.log(orderData)
     }
   };
-  //Actualizar un pedido
-  const handleOrderUpdate = async () => {
-    const currentOrder = orders[tableName] || [];
-    
-    const orderData = {      
-      username: "Mesero 01",
-      date: new Date(),
-      items: currentOrder.map(item => ({
-        product: item.productName,
-        quantity: item.quantity,
-        comment:item.comment || '',
-        price: item.price
-      })),
-      totalValue: totalAmount,      
-      progress: "Pendiente",      
-    };
-
-    try {
-      const response = await axios.put('https://backend-restaurant-seven.vercel.app/api/orders/${existingOrderId}', orderData);
-      console.log('Orden enviada:', response.data);
-      //socket.emit('newOrder', orderData);
-            
-      navigation.navigate('Mesas'); // Regresar a la pantalla Mesas
-    } catch (error) {
-      console.error('Error al actualizar pedido:', error);
-      console.log(orderData)
-    }
-  };
-
+ 
   return (
     <View style={styles.container_crear_pedido}>
       <Text style={[styles.title, { marginTop: 15 }]}>{tableName}</Text>
@@ -203,7 +164,7 @@ const CreateOrder = () => {
       </View>
       <View style={styles.vista_menu}>
         <Button style={styles.button_menu} icon={'receipt'} title='cuenta' buttonColor='#1c4c96' mode='contained' onPress={() => console.log('cuenta')}>Cuenta</Button>
-        <Button style={styles.button_menu} icon={'cancel'} title='cancelar' buttonColor='#FFA500' mode='contained' onPress={handleOrderUpdate}>Actualizar</Button>
+        <Button style={styles.button_menu} icon={'cancel'} title='cancelar' buttonColor='#FFA500' mode='contained' onPress={console.log}>Actualizar</Button>
         <Button style={styles.button_menu} icon={'send'} title='comanda' buttonColor='#038554' mode='contained' onPress={handleOrderSubmit}>Comanda</Button>
       </View>
     </View>

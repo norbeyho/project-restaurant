@@ -47,31 +47,10 @@ const DataProvider = ({ children }) => {
     const setTable = (tableId) => {
         setCurrentTable(tableId);
         setTableName(tableId);
-    };
-    
-    const searchOrder = async () => {
-        try {
-            const response = await axios.get(`http://148.113.142.238:3000/api/find-order?tableName=${tableName}&progress=${progress}`);
-            const ordersData = response.data;
-            
-            const showOrder = ordersData.reduce((acc, order) => {
-                const showProducts = order.items.map(item => ({
-                    productName: item.product,
-                    quantity: item.quantity,
-                    comment: item.comment,
-                    price: item.price
-                }));
-                acc[order.tableName] = showProducts;
-                return acc;
-            }, {})
-            setOrders(prevOrders =>({...prevOrders, ...showOrder }));
-        } catch (error) {
-            console.error("Error al buscar orden:", error);
-        }
-    };
+    };    
 
     return (
-        <DataContext.Provider value={{ orders, addProduct, currentTable, progress, tableName, setOrders, totalAmount, setTable, updateComment, searchOrder, setTableName }}>
+        <DataContext.Provider value={{ orders, addProduct, currentTable, progress, tableName, setOrders, totalAmount, setTable, updateComment, setTableName }}>
             {children}
         </DataContext.Provider>
     );

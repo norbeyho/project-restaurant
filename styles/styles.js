@@ -260,12 +260,33 @@ const styles = StyleSheet.create({
           height: '100%',
           justifyContent: 'center',
           alignItems: 'center',        
-          //backgroundColor: 'rgba(0, 0, 0, 0.5)', // Un fondo semi-transparente para el texto
-          //padding: 20,
+          gap:20,
           borderRadius: 10,      
           color: 'white',
           fontSize: 24,        
-      }
+      },
+      container_login: {
+        flex: 1,
+        color: 'white',    
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: 20, 
+        width:'100%'
+      },
+      input: {
+        backgroundColor: '#F2F2F2',
+        color: 'black',
+        borderColor: '#530B24',
+        borderRadius: 15,
+        borderTopLeftRadius:15,
+        borderTopRightRadius:15,
+        //borderWidth: 2,
+        padding: 10,
+        margin: 10,
+        width: '80%',
+        height:35,
+        fontSize:15
+      },
       
 });
 

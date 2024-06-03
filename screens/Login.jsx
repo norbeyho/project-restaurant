@@ -1,11 +1,11 @@
 // En Login.js
 
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, Text, View } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { useForm, Controller } from "react-hook-form";
 import axios from 'axios';
-import { ImageBackground } from 'react-native';
+import styles from '../styles/styles';
 import { LinearGradient } from 'expo-linear-gradient';
 
 
@@ -58,8 +58,8 @@ import { LinearGradient } from 'expo-linear-gradient';
   return (
     <ImageBackground 
       source={require('../images/bg.webp')}
-      style={[styles.container,styles.img_background]}>
-      <LinearGradient style={[styles.container,{width:'100%'}]} colors={['rgba(105,27,53,0.2)', 'transparent']}>
+      style={[styles.img_background]}>
+      <LinearGradient style={[styles.container_login,{width:'100%'}]} colors={['rgba(105,27,53,0.2)', 'transparent']}>
       <Controller
         control={control}
         rules={{
@@ -72,18 +72,19 @@ import { LinearGradient } from 'expo-linear-gradient';
           <TextInput
             label="Usuario"
             textColor='black'
-            style={styles.input}
+            style={styles.input}      
+            activeUnderlineColor='#540B24'                        
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            left={<TextInput.Icon icon="account-edit" color={'black'} />}
+            left={<TextInput.Icon icon="account-edit" color={'#540B24'} />}
           />
         )}
         name="username"
       />
-      {errors.username?.type === "required" && <Text style={{ color: 'red' }}>El nombre es obligatorio.</Text>}
-      {errors.username?.type === "maxLength" && <Text style={{ color: 'red' }}> La longitud no debe de exceder 50 chars.</Text>}
-      {errors.username?.type === "minLength" && <Text style={{ color: 'red' }}> La longitud minima es de 3 chars.</Text>}
+      {errors.username?.type === "required" && <Text style={{ color: 'white' }}>El nombre es obligatorio.</Text>}
+      {errors.username?.type === "maxLength" && <Text style={{ color: 'white' }}> La longitud no debe de exceder 50 chars.</Text>}
+      {errors.username?.type === "minLength" && <Text style={{ color: 'white' }}> La longitud minima es de 3 chars.</Text>}
       {/* {errors.username?.type === "pattern" && <Text style={{ color: 'red' }}> El nombre debe contener solo letras y/o espacios</Text>} */}
 
       <Controller
@@ -98,20 +99,21 @@ import { LinearGradient } from 'expo-linear-gradient';
             label="Contraseña"
             textColor='black'
             style={styles.input}
+            activeUnderlineColor='#540B24'
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            left={<TextInput.Icon icon="lock-outline" color={'black'} />}
+            left={<TextInput.Icon icon="lock-outline" color={'#540B24'} />}
           />
         )}
         name="password"
       />
-      {errors.password?.type === "required" && <Text style={{ color: 'red' }}>La contraseña es obligatoria.</Text>}
-      {errors.password?.type === "pattern" && <Text style={{ color: 'red' }}> La contraseña debe contener minimo 8 caracteres validos</Text>}
+      {errors.password?.type === "required" && <Text style={{ color: 'white' }}>La contraseña es obligatoria.</Text>}
+      {errors.password?.type === "pattern" && <Text style={{ color: 'white' }}> La contraseña debe contener minimo 8 caracteres validos</Text>}
 
       {error ? <Text style={{ color: 'red' }}>{error}</Text> : null}
 
-      <Button style={{backgroundColor:'#530B24', width: '80%', height:'30'}} icon="login" mode="contained" onPress={handleSubmit(onSubmit)}>
+      <Button style={{backgroundColor:'#530B24', width: '80%', height:50}} icon="login" mode="contained" onPress={handleSubmit(onSubmit)}>
         Iniciar Sesión
       </Button>
       </LinearGradient>
@@ -119,25 +121,24 @@ import { LinearGradient } from 'expo-linear-gradient';
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    color: 'white',
-    //backgroundColor: '#16161C',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 20,
-  },
-  input: {
-    backgroundColor: '#F2F2F2',
-    color: 'black',
-    borderColor: '#F8F6F1',
-    borderRadius: 7,
-    //borderWidth: 2,
-    padding: 10,
-    margin: 10,
-    width: '80%',
-  },
-});
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     color: 'white',    
+//     alignItems: 'center',
+//     justifyContent: 'center',
+//     gap: 20, width:'100%'
+//   },
+//   input: {
+//     backgroundColor: '#F2F2F2',
+//     color: 'black',
+//     borderColor: '#F8F6F1',
+//     borderRadius: 7,
+//     //borderWidth: 2,
+//     padding: 10,
+//     margin: 10,
+//     width: '80%',
+//   },
+// });
 
 export default Login;
