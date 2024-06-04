@@ -14,7 +14,7 @@ const CreateOrder = () => {
   const navigation = useNavigation();
   const route = useRoute();
   const { tableName } = route.params;
-  const { orders, addProduct, setTable, setOrders, totalAmount, } = useContext(DataContext)
+  const { orders, addProduct, setTable, setOrders, totalAmount, addPendingOrder } = useContext(DataContext)
 
   useEffect(() => {
     setTable(tableName); //Establecer la mesa actual
@@ -62,6 +62,31 @@ const CreateOrder = () => {
       [tableName]: orders[tableName].filter((item) => item.productName !== product.productName)
     });
   };
+  //Enviar la comanda
+    const handleSend = () => {
+      const orderData = {
+        tableName: tableName,
+        username: "Mesero 01",
+        date: new Date(),
+        items: orders[tableName].map(item => ({
+          product: item.productName,
+          quantity: item.quantity,
+          comment:item.comment || '',
+          price: item.price
+        })),
+        totalValue: totalAmount,      
+        progress: "Pendiente",
+    };
+
+    addPendingOrder(orderData);
+    console.log('Pedido agregado');
+  } 
+
+  //Cancelar
+  const handleCancel = ()=>{
+    setOrders({...orders, [tableName]: []});
+  }
+  
   //Guardar el pedido
   const handleOrderSubmit = async () => {
     
@@ -163,9 +188,9 @@ const CreateOrder = () => {
       )}
       </View>
       <View style={styles.vista_menu}>
-        <Button style={styles.button_menu} icon={'receipt'} title='cuenta' buttonColor='#1c4c96' mode='contained' onPress={() => console.log('cuenta')}>Cuenta</Button>
-        <Button style={styles.button_menu} icon={'cancel'} title='cancelar' buttonColor='#FFA500' mode='contained' onPress={console.log}>Actualizar</Button>
-        <Button style={styles.button_menu} icon={'send'} title='comanda' buttonColor='#038554' mode='contained' onPress={handleOrderSubmit}>Comanda</Button>
+        <Button style={styles.button_menu} icon={'receipt'} title='cuenta' buttonColor='#1c4c96' mode='contained' onPress={handleOrderSubmit}>Cuenta</Button>
+        <Button style={styles.button_menu} icon={'cancel'} title='cancelar' buttonColor='#E10141' mode='contained' onPress={handleCancel}>Cancelar</Button>
+        <Button style={styles.button_menu} icon={'send'} title='comanda' buttonColor='#038554' mode='contained' onPress={handleSend}>Comanda</Button>
       </View>
     </View>
   )

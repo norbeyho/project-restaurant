@@ -1,15 +1,21 @@
-// En Login.js
-
 import React, { useState, useEffect } from 'react';
-import { ImageBackground, Text, View } from 'react-native';
+import { Dimensions, ImageBackground, Text, View } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { useForm, Controller } from "react-hook-form";
 import axios from 'axios';
 import styles from '../styles/styles';
 import { LinearGradient } from 'expo-linear-gradient';
 
-
  const Login =({ navigation }) =>{
+
+  const screenWidth = Dimensions.get('window').width;
+
+  let inputWidth = screenWidth * 0.8;
+
+  if (screenWidth > 600) {
+    inputWidth = 400;
+  }
+
   const [error, setError] = useState('');
   //const [username, setUsername] = useState('');
   //const [password, setPassword] = useState('');
@@ -70,14 +76,14 @@ import { LinearGradient } from 'expo-linear-gradient';
         }}
         render={({ field: { onChange, onBlur, value } }) => (
           <TextInput
-            label="Usuario"
+            label="Usuario"            
             textColor='black'
-            style={styles.input}      
-            activeUnderlineColor='#540B24'                        
+            style={[styles.input,{width:inputWidth}]}      
+            activeUnderlineColor='#540B24'              
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            left={<TextInput.Icon icon="account-edit" color={'#540B24'} />}
+            left={<TextInput.Icon icon="account" color={'#540B24'} />}
           />
         )}
         name="username"
@@ -98,7 +104,7 @@ import { LinearGradient } from 'expo-linear-gradient';
             secureTextEntry
             label="Contraseña"
             textColor='black'
-            style={styles.input}
+            style={[styles.input,{width:inputWidth}]}
             activeUnderlineColor='#540B24'
             onBlur={onBlur}
             onChangeText={onChange}
@@ -113,32 +119,18 @@ import { LinearGradient } from 'expo-linear-gradient';
 
       {error ? <Text style={{ color: 'red' }}>{error}</Text> : null}
 
-      <Button style={{backgroundColor:'#530B24', width: '80%', height:50}} icon="login" mode="contained" onPress={handleSubmit(onSubmit)}>
+      <Button 
+        style={{
+          backgroundColor:'#530B24', 
+          width: inputWidth, 
+          height:55, 
+          padding:5,        
+          }} icon="login" mode="contained" onPress={handleSubmit(onSubmit)}>
         Iniciar Sesión
       </Button>
       </LinearGradient>
     </ImageBackground>
   );
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     color: 'white',    
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     gap: 20, width:'100%'
-//   },
-//   input: {
-//     backgroundColor: '#F2F2F2',
-//     color: 'black',
-//     borderColor: '#F8F6F1',
-//     borderRadius: 7,
-//     //borderWidth: 2,
-//     padding: 10,
-//     margin: 10,
-//     width: '80%',
-//   },
-// });
 
 export default Login;

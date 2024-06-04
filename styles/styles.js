@@ -276,18 +276,21 @@ const styles = StyleSheet.create({
       input: {
         backgroundColor: '#F2F2F2',
         color: 'black',
-        borderColor: '#530B24',
-        borderRadius: 15,
-        borderTopLeftRadius:15,
-        borderTopRightRadius:15,
+        //borderColor: '#530B24',
+        borderRadius: 10,
+        borderTopLeftRadius:10,
+        borderTopRightRadius:10,
         //borderWidth: 2,
-        padding: 10,
-        margin: 10,
-        width: '80%',
-        height:35,
-        fontSize:15
+        //padding: 10,
+        //margin: 10,
+        //width: '80%',
+        height:55,
+        //fontSize:15
       },
-      
+      button_login: {
+        backgroundColor:'#530B24',
+        
+      }
 });
 
 export default styles;

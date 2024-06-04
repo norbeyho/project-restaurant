@@ -6,10 +6,11 @@ import { DrawerContent } from './navigation/DrawerNavigation';
 import CreateOrder from './screens/CreateOrder';
 import Products from './screens/Products';
 import { DataProvider } from './context/DataContext';
-import { Orders } from './screens/Orders';
 import Comments from './screens/Comments';
 import { LogBox } from 'react-native';
 import Login from './screens/Login';
+import Orders from './screens/Orders';
+
 
 LogBox.ignoreLogs([
   '[Reanimated] Reduced motion setting is enabled on this device.',
