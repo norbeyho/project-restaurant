@@ -6,9 +6,7 @@ import styles from "../styles/styles";
 import { Button } from 'react-native-paper';
 
 const Orders = () => {
-  const { pendingOrders } = useContext(DataContext);
-
-  console.log('Órdenes en el componente Orders:', pendingOrders);
+  const { pendingOrders } = useContext(DataContext);  
 
   return (
     <View style={styles.orderContainer}>

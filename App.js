@@ -10,6 +10,7 @@ import Comments from './screens/Comments';
 import { LogBox } from 'react-native';
 import Login from './screens/Login';
 import Orders from './screens/Orders';
+import PendingOrders from './screens/PendingOrders';
 
 
 LogBox.ignoreLogs([
@@ -30,6 +31,13 @@ export default function App() {
         <Stack.Screen name='Products' component={Products} options={{title:'Agregar Producto',headerStyle:{backgroundColor:'#62152d'},headerTintColor:'white',headerShadowVisible:true,headerTitleAlign:'center'}} />        
         <Stack.Screen name='Orders' component={Orders} options={{title:'Pedidos'}} />
         <Stack.Screen name='Comentarios' component={Comments} />
+        <Stack.Screen name='PendingOrders' component={PendingOrders} options={{ title:'Cocina',
+          headerStyle: {
+            backgroundColor: '#8e0000'},// Cambia el color de fondo de la barra de navegación
+            headerTintColor: '#fff', // Cambia el color del texto en la barra de navegación
+            headerTitleStyle: {fontWeight: 'bold', fontSize: 30}, // Cambia el estilo del título en la barra de navegación
+            headerTitleAlign: ''
+        }}/>
       </Stack.Navigator>                 
     </NavigationContainer>
     </DataProvider>

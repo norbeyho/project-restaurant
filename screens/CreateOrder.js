@@ -9,7 +9,7 @@ import { Button, IconButton } from "react-native-paper";
 import { io } from "socket.io-client";
 
 const CreateOrder = () => {
-  const socket = io('http://localhost:3000')
+  const socket = io('http://148.113.142.238:3000')
   const [category, setCategory] = useState([]);
   const navigation = useNavigation();
   const route = useRoute();

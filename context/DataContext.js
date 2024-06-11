@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 
 const DataContext = createContext();
 
-const socket = io('http://localhost:3000');
+const socket = io('http://148.113.142.238:3000');
 
 const DataProvider = ({ children }) => {
     const [currentTable, setCurrentTable] = useState(null);    
