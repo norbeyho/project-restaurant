@@ -288,9 +288,40 @@ const styles = StyleSheet.create({
         //fontSize:15
       },
       button_login: {
-        backgroundColor:'#530B24',
-        
-      }
+        backgroundColor:'#530B24',        
+      },
+
+      orderContainer: {
+        flex: 1,
+        padding: 20,
+        backgroundColor:'#16161C',
+      },
+
+      orderItem: {
+        padding: 15,
+        backgroundColor:'#C1C1C1',
+        borderWidth: 1,
+        borderColor: '#ccc',
+        borderRadius: 5,
+        marginBottom: 15,
+      },
+      orderText: {
+        fontSize: 18,
+        marginBottom: 5,
+        color:'black'
+      },
+      productItem: {
+        //marginLeft: 20,
+        marginTop: 10,
+      },
+      dot: {
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        width: 10,
+        height: 10,
+        borderRadius: 5,        
+    },
 });
 
 export default styles;

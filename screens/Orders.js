@@ -1,46 +1,37 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from 'react';
+import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { DataContext } from '../context/DataContext';
+import 'react-native-gesture-handler'
 import styles from "../styles/styles";
-import { View, Text, FlatList } from "react-native";
-import axios from "axios";
-import { ScrollView } from "react-native";
-import { DataContext } from "../context/DataContext";
-import { io } from "socket.io-client";
+import { Button } from 'react-native-paper';
 
 const Orders = () => {
-  const { pendingOrders, setPendingOrders } = useContext(DataContext);
-  const [socket, setSocket] = useState(null);
+  const { pendingOrders } = useContext(DataContext);
 
-  useEffect(() => {
-    const newSocket = io('http://148.113.142.238:3000');
-    setSocket(newSocket);
-
-    newSocket.on('newOrder', (order) =>{
-      setPendingOrders((prevOrders) => [...prevOrders, order]);
-    });
-
-    return () => newSocket.close();
-  }, [setPendingOrders]);
+  console.log('Órdenes en el componente Orders:', pendingOrders);
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Pedidos Pendientes</Text>
+    <View style={styles.orderContainer}>
+
       <FlatList
         data={pendingOrders}
         keyExtractor={(item, index) => index.toString()}
         renderItem={({ item }) => (
           <View style={styles.orderItem}>
-            <Text style={styles.title}>Mesa: {item.tableName}</Text>
-            <Text style={styles.title}>Mesero: {item.username}</Text>
-            <Text style={styles.title}>Total: $ {item.totalValue}</Text>
+            <Text style={styles.orderText}>{item.table}</Text>
+            <Text style={styles.orderText}>Usuario: {item.username}</Text>
+            <Text style={styles.orderText}>Fecha: {new Date(item.date).toLocaleString()}</Text>
+            {/* <Text style={styles.orderText}>Total: ${item.totalValue}</Text> */}
+            <Text style={styles.orderText}>Progreso: {item.progress}</Text>
             <FlatList
               data={item.items}
-              keyExtractor={(subItem, subIndex) => subIndex.toString()}
-              renderItem={({ subItem }) => (
-                <View style={styles.orderDetail}>
-                  <Text style={styles.title}>{subItem.product}</Text>
-                  <Text style={styles.title}>Cantidad: {subItem.quantity}</Text>
-                  <Text style={styles.title}>Precio: $ {subItem.price}</Text>
-                  {subItem.comment && <Text style={styles.title}>Comentario: {subItem.comment}</Text>}
+              keyExtractor={(product, index) => index.toString()}
+              renderItem={({ item: product }) => (
+                <View style={styles.productItem}>
+                  <Text style={styles.orderText}>Producto: {product.product}</Text>
+                  <Text style={styles.orderText}>Cantidad: {product.quantity}</Text>
+                  <Text style={styles.orderText}>Precio: ${product.price}</Text>
+                  <Text style={styles.orderText}>Comentario: {product.comment}</Text>
                 </View>
               )}
             />
@@ -49,6 +40,6 @@ const Orders = () => {
       />
     </View>
   );
-}
+};
 
 export default Orders;

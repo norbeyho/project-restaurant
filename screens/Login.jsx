@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Dimensions, ImageBackground, Text, View } from 'react-native';
 import { TextInput, Button } from 'react-native-paper';
 import { useForm, Controller } from "react-hook-form";
 import axios from 'axios';
 import styles from '../styles/styles';
 import { LinearGradient } from 'expo-linear-gradient';
+import { DataContext } from '../context/DataContext';
 
  const Login =({ navigation }) =>{
 
+  const {setUserName} = useContext(DataContext);
   const screenWidth = Dimensions.get('window').width;
 
   let inputWidth = screenWidth * 0.8;
@@ -34,19 +36,19 @@ import { LinearGradient } from 'expo-linear-gradient';
       const user = response.data;
       console.log(data)
       if (user && user.role) {
-        
+        setUserName(username);
         switch (user.role) {
           case 'Admin':
-            navigation.navigate('Admin');
+            navigation.navigate('Admin',{username});
             break;
           case 'Mesero':
-            navigation.navigate('HomeMesas');            
+            navigation.navigate('HomeMesas',{username});            
             break;
           case 'chef':
-            navigation.navigate('Chef');
+            navigation.navigate('Chef',{username});
             break;
           case 'cajero':
-            navigation.navigate('Cajero');
+            navigation.navigate('Cajero',{username});
             break;
           default:
             setError('Rol de usuario no válido');
@@ -58,7 +60,7 @@ import { LinearGradient } from 'expo-linear-gradient';
     } catch (error) {
       console.error('Error al autenticar:', error);
       setError('Error al iniciar sesión');
-    }
+    }    
   };
 
   return (

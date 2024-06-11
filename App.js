@@ -25,9 +25,9 @@ export default function App() {
     <NavigationContainer>           
       <Stack.Navigator>
         <Stack.Screen name='Login' component={Login} options={{headerShown:false}} />
-        <Stack.Screen name='HomeMesas' component={DrawerContent} options={{headerShown:false}}/>        
-        <Stack.Screen name='CreateOrder' component={CreateOrder} options={{title:'Crear Pedido'}}/>
-        <Stack.Screen name='Products' component={Products} options={{title:'Agregar Producto'}} />        
+        <Stack.Screen name='HomeMesas' component={DrawerContent} options={{headerShown:false}} />        
+        <Stack.Screen name='CreateOrder' component={CreateOrder} options={{title:'Crear pedido',headerStyle:{backgroundColor:'#62152d'},headerTintColor:'white',headerShadowVisible:true,headerTitleAlign:'center'}}/>
+        <Stack.Screen name='Products' component={Products} options={{title:'Agregar Producto',headerStyle:{backgroundColor:'#62152d'},headerTintColor:'white',headerShadowVisible:true,headerTitleAlign:'center'}} />        
         <Stack.Screen name='Orders' component={Orders} options={{title:'Pedidos'}} />
         <Stack.Screen name='Comentarios' component={Comments} />
       </Stack.Navigator>                 
