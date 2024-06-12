@@ -132,7 +132,7 @@ const CreateOrder = () => {
     clearTable(tableName);   
 
     const pendingOrder = pendingOrders.find(order => order.table === tableName);
-    console.log('pendiong order', pendingOrder)
+    console.log('pending order', pendingOrder)
     if(pendingOrder)
     cancelOrder(tableName)
   console.log('cancel ordeN', tableName)
@@ -142,7 +142,7 @@ const CreateOrder = () => {
   //Guardar el pedido
   const handleOrderSubmit = async () => {
     const orderData = {
-      table: tableName,
+      tableName: tableName,
       username: username,
       date: new Date(),
       items: currentOrder ? currentOrder.items.map((item) => ({
@@ -154,21 +154,14 @@ const CreateOrder = () => {
       totalValue: totalAmount,
       progress: "Pendiente",
     };
-
     try {
       const response = await axios.post(
-        "http://148.113.142.238:3000/api/orders",
-        orderData
-      );
-      console.log("Orden enviada:", response.data);
-      //socket.emit("newOrder", orderData);
-      setOrders(prevOrders => prevOrders.map(order =>
-        order.table === tableName ? { ...order, items: [] } : order
-      ));
+        'http://148.113.142.238:3000/api/orders',orderData );
+      handleCancel();
+      
       navigation.navigate("Mesas");
     } catch (error) {
-      console.error("Error al guardar pedido:", error);
-      console.log(orderData);
+      console.error("Error al guardar pedido:", error);      
     }
   };
   
@@ -265,7 +258,7 @@ const CreateOrder = () => {
           mode="contained"
           onPress={handleCancel}
         >
-          Cancelar
+          Limpiar
         </Button>
         <Button
           style={styles.button_menu}

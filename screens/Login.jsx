@@ -44,7 +44,7 @@ import { DataContext } from '../context/DataContext';
           case 'Mesero':
             navigation.navigate('HomeMesas',{username});            
             break;
-          case 'chef':
+          case 'Cocina':
             navigation.navigate('PendingOrders',{username});
             break;
           case 'cajero':

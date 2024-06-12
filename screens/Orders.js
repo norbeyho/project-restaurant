@@ -7,7 +7,7 @@ import { Button } from 'react-native-paper';
 
 const Orders = () => {
   const { pendingOrders } = useContext(DataContext);  
-
+  console.log('pending',pendingOrders)
   return (
     <View style={styles.orderContainer}>
 
