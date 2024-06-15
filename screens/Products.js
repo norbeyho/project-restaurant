@@ -14,7 +14,7 @@ const Products = ({ route }) => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const url = `http://148.113.142.238:3000/api/products/${categoryId}`;
+        const url = `https://backendrestaurant.fly.dev/api/products/${categoryId}`;
         const response = await axios.get(url);
         setProducts(response.data);
       } catch (error) {

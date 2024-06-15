@@ -18,7 +18,7 @@ const PendingOrders = () => {
   },[username, setUserName]);
 
   useEffect(() => {
-    const socket = io('http://148.113.142.238:3000');
+    const socket = io('https://backendrestaurant.fly.dev');
 
     socket.on('connect', () => {
       console.log('Connected to server');
@@ -42,7 +42,7 @@ const PendingOrders = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('http://148.113.142.238:3000/api/orders');
+      const response = await fetch('https://backendrestaurant.fly.dev/api/orders');
       const data = await response.json();
       // Filtrar solo las órdenes pendientes
       const pendingOrders = data.filter(order => order.progress === "Pendiente");
@@ -86,7 +86,7 @@ const PendingOrders = () => {
     const orderId = selectedOrder._id;
     // Actualizar el estado de la orden en el backend
     try {
-      const response = await fetch(`http://148.113.142.238:3000/api/orders/${orderId}`, {
+      const response = await fetch(`https://backendrestaurant.fly.dev/api/orders/${orderId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'

@@ -3,11 +3,11 @@ import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { DataContext } from '../context/DataContext';
 import 'react-native-gesture-handler'
 import styles from "../styles/styles";
-import { Button } from 'react-native-paper';
+
 
 const Orders = () => {
   const { pendingOrders } = useContext(DataContext);  
-  console.log('pending',pendingOrders)
+  
   return (
     <View style={styles.orderContainer}>
 

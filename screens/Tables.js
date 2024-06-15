@@ -20,7 +20,7 @@ const Tables = () => {
   useEffect(()=>{
   const getTable = async () => {
     try {
-      const url = `http://148.113.142.238:3000/api/tables`;
+      const url = `https://backendrestaurant.fly.dev/api/tables`;
       const response = await axios.get(url);      
       setTable(response.data);
       //setIcon(response.data.icon);

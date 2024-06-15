@@ -9,7 +9,7 @@ import { Button, IconButton } from "react-native-paper";
 import { io } from "socket.io-client";
 
 const CreateOrder = () => {
-  const socket = io('http://148.113.142.238:3000')
+  const socket = io('https://backendrestaurant.fly.dev/')
   const [category, setCategory] = useState([]);
   const navigation = useNavigation();
   const route = useRoute();
@@ -26,11 +26,11 @@ const CreateOrder = () => {
   useEffect(() => {
     const getCategory = async () => {
       try {
-        const url = `http://148.113.142.238:3000/api/categories`;
+        const url = `https://backendrestaurant.fly.dev/api/categories`;
         const response = await axios.get(url);
         setCategory(response.data);
       } catch (error) {
-        console.log("No se cargaron los datos", error);
+        
       }
     };
     getCategory();
@@ -115,11 +115,9 @@ const CreateOrder = () => {
     // Verifica si la orden ya existe y actualiza en lugar de crear una nueva
     if (currentOrder && currentOrder.id) {
       orderData.id = currentOrder.id; // Añadir el id de la orden existente
-      socket.emit('updateOrder', orderData);
-      console.log('Orden actualizada:', orderData);
+      socket.emit('updateOrder', orderData);      
     } else {
-      socket.emit('newOrder', orderData);
-      console.log('Orden nueva:', orderData);
+      socket.emit('newOrder', orderData);      
     }
   };
   
@@ -134,8 +132,7 @@ const CreateOrder = () => {
     const pendingOrder = pendingOrders.find(order => order.table === tableName);
     console.log('pending order', pendingOrder)
     if(pendingOrder)
-    cancelOrder(tableName)
-  console.log('cancel ordeN', tableName)
+    cancelOrder(tableName)  
     socket.emit('cancel_order', tableName);    
   };
 
@@ -156,7 +153,7 @@ const CreateOrder = () => {
     };
     try {
       const response = await axios.post(
-        'http://148.113.142.238:3000/api/orders',orderData );
+        'https://backendrestaurant.fly.dev/api/orders',orderData );
       handleCancel();
       
       navigation.navigate("Mesas");
